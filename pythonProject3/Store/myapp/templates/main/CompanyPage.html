@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" >
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>О компании</title>
+	
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+
+	$(window).scroll(function(){
+	if ($(this).scrollTop() > 300) {
+	$('.scrollup').fadeIn();
+	} else {
+	$('.scrollup').fadeOut();
+	}
+	});
+
+	$('.scrollup').click(function(){
+	$("html, body").animate({ scrollTop: 0 }, 600);
+	return false;
+	});
+
+	});
+</script>
+</head>
+<body>
+	<div class="header">
+		<div class="navbar">
+			<div class="logo">
+				<a  href="{% url 'home' %}">
+					<img src="{% static 'Site_icons/logo.png' %}" width="384" height="76" alt="">
+				</a>
+				 {% if is_login %}
+				<a class="auth" >
+				{{username}}
+				</a>
+				<a class="logout" href="{% url 'logout' %}">
+					<button>Выйти</button>
+				</a>
+				{% else %}
+				<a class="auth" href="{% url 'login' %}">
+				Авторизоваться
+				</a>
+				{% endif %}
+			</div>
+			<div class="search">
+				<input name="Search" type="text" placeholder="Поиск по товарам" />
+				<div><input class="icon_search" type="image" src="{% static 'Site_icons/search.png' %}" width="24" height="27" alt="Не удалось загрузить изображение"></div>
+			</div>
+			</div>
+		<div class="basket">
+			<a href="{% url 'basket' %}">
+				<img src="{% static 'Site_icons/shopping-cart.png' %}" width="50" height="45" alt="">
+			</a>
+		</div>
+		<ul class="navlist">
+			<li class="Catalog"><img src="{% static 'Site_icons/menu.png' %}" width="26" height="22" alt="">
+			<div class="dropdown-content">
+    			<a href="{% url 'catalog_crags' %}">Краги</a>
+    			<a href="{% url 'catalog' %}">Коньки</a>
+    			<a href="{% url 'catalog_bib' %}">Нагрудники</a>
+    			<a href="{% url 'catalog_trousers' %}">Трусы</a>
+    			<a href="{% url 'catalog_sticks' %}">Клюшки</a>
+    			<a href="{% url 'catalog_armrests' %}">Подлокотники</a>
+    			<a href="{% url 'catalog_helmets' %}">Шлемы</a>
+  			</div>
+			<li ><a href="#">Каталог
+  			</a>
+			<li><a href="{% url 'brends' %}">Производители</a>
+			<li><a href="{% url 'company' %}">О компании</a>
+			<li><a href="{% url 'contacts' %}">Контакты</a>
+		</ul>
+		<div class="line2"></div>
+		</div>
+	<div class="line1"></div>
+	<div class="content">
+		<h1 class="title">О компании</h1>
+		<div class="description">
+			<div>
+			<p>Новый магазин хоккейной экипировки Hockey store,- входишь как в зону атаки – сразу от синей ленты пункта пропуска, входишь и попадаешь … на пятачок! Пространство магазина организуют круглые хоккейные борта, а посередине между ними, как известно, и находится главный центр игровых событий. Борта не бутафорские, самые настоящие, высочайшего международного уровня – с чемпионат мира по хоккею 2000 года.</p>
+			<p>Соответственного уровня и наполнение – товары ведущих мировых производителей, последние модели. Расположение обязывает – в ДС «Юбилейном» базируются команды мастеров, а значит, в любую минуту может прийти техник из профессионального хоккейного клуба, которому что-то нужно сейчас и сразу и некогда ждать заказа, потому что автобус с командой отъезжает. И профи необходимое получит. Такой же сервис ждет и остальных посетителей. Ведь тут, как в спорте – или ты готов играть на высоком уровне или нет.</p>
+			<p>В «Hockey store» готовы. Причем, не только к запросам профессионалов, но и к вопросам любителей. Подробнейшие описания товаров, способность объяснить, чем один конек отличается от другого, и что именно покупается на разницу в цене между ними - одна из «фишек» нового магазина. Приходите в «Форму» и вы будете в форме, той, которая нужна именно вам.</p>
+			<p>Индивидуальный предприниматель Дремин М.А.<br> ИНН 78147604694<br> КПП 7814010014</p>
+			<p>Банк СФ АО «СМП Банк»<br>Корр. счет: 301018107000000007834<br>Расч. счет: 407028107020000011634<br>БИК: 044030783<br>Коды статистики ОКПО 20005922604<br>ОКАТО 402630000004<br>ОКТМО 403100000004
+			<p>Постановка на налоговый учет Межрайонная инспекция Федеральной налоговой службы No15 по Челябинску</p>
+			<p>Почтовый адрес 455000, Российская Федерация, Г. Челябинск</p>
+			<p>ул. Марата д. 8</p>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="footer_contacts">
+			<div class="contacts">Контакты
+				<div class="telephone">
+			<img class="print_telephone" src="{% static 'Site_icons/phone.png' %}" alt="">
+			<div class="number">+79080636899
+			</div>
+		</div>
+		<div class="location">
+			<img class="print_location" src="{% static 'Site_icons/location.png' %}" alt="">
+			<div class="address">Город Челябинск, улица Марата 8
+			</div>
+		</div>
+		<div class="email">
+			<img class="print_email" src="{% static 'Site_icons/envelope.png' %}" alt="">
+			<div class="email_address">mdryomin@bk.ru
+			</div>
+		</div>
+			</div>
+
+		</div>
+		<div class="social_sites">Мы в социальных сетях
+				<ul>
+					<li class="VK"><a href="https://vk.com/mdryomin99" target="_blank"><img src="{% static 'Site_icons/vk.png' %}" width="40"
+					height="40" alt=""></a>
+					<li class="Telegram"><a href="https://t.me/MikhailDrem" target="_blank"><img src="{% static 'Site_icons/telegram.png' %}" width="40"
+					height="40" alt=""></a>
+					<li class="Instagram"><a href="https://www.instagram.com/" target="_blank"><img src="{% static 'Site_icons/instagram.png' %}" width="40"
+					height="40" alt=""></a>
+				</ul>
+
+		</div>
+	</div>
+	<a href="#" class="scrollup">Наверх</a>
+</body>
+</html>

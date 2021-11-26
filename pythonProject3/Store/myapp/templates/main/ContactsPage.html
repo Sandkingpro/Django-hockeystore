@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" >
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Контакты</title>
+	
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+
+	$(window).scroll(function(){
+	if ($(this).scrollTop() > 300) {
+	$('.scrollup').fadeIn();
+	} else {
+	$('.scrollup').fadeOut();
+	}
+	});
+
+	$('.scrollup').click(function(){
+	$("html, body").animate({ scrollTop: 0 }, 600);
+	return false;
+	});
+
+	});
+</script>
+</head>
+<body>
+	<div class="header">
+		<div class="navbar">
+			<div class="logo">
+				<a  href="{% url 'home' %}">
+					<img src="{% static 'Site_icons/logo.png' %}" width="384" height="76" alt="">
+				</a>
+				 {% if is_login %}
+				<a class="auth" >
+				{{username}}
+				</a>
+				<a class="logout" href="{% url 'logout' %}">
+					<button>Выйти</button>
+				</a>
+				{% else %}
+				<a class="auth" href="{% url 'login' %}">
+				Авторизоваться
+				</a>
+				{% endif %}
+			</div>
+			<div class="search">
+				<input name="Search" type="text" placeholder="Поиск по товарам" />
+				<div><input class="icon_search" type="image" src="{% static 'Site_icons/search.png' %}" width="24" height="27" alt="Не удалось загрузить изображение"></div>
+			</div>
+			</div>
+		<div class="basket">
+			<a href="{% url 'basket' %}">
+				<img src="{% static 'Site_icons/shopping-cart.png' %}" width="50" height="45" alt="">
+			</a>
+		</div>
+		<ul class="navlist">
+			<li class="Catalog"><img src="{% static 'Site_icons/menu.png' %}" width="26" height="22" alt="">
+			<div class="dropdown-content">
+    			<a href="{% url 'catalog_crags' %}">Краги</a>
+    			<a href="{% url 'catalog' %}">Коньки</a>
+    			<a href="{% url 'catalog_bib' %}">Нагрудники</a>
+    			<a href="{% url 'catalog_trousers' %}">Трусы</a>
+    			<a href="{% url 'catalog_sticks' %}">Клюшки</a>
+    			<a href="{% url 'catalog_armrests' %}">Подлокотники</a>
+    			<a href="{% url 'catalog_helmets' %}">Шлемы</a>
+  			</div>
+			<li ><a href="#">Каталог
+  			</a>
+			<li><a href="{% url 'brends' %}">Производители</a>
+			<li><a href="{% url 'company' %}">О компании</a>
+			<li><a href="{% url 'contacts' %}">Контакты</a>
+		</ul>
+		<div class="line2"></div>
+		</div>
+	<div class="line1"></div>
+	<div class="content">
+		<h1 class="title">Контакты</h1>
+		<div class="description">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2281.2080281274707!2d61.38471261586734!3d55.12713638039065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x43c58d68bea0bd05%3A0xfbb48be8b25bfe1b!2z0YPQuy4g0JzQsNGA0LDRgtCwLCA4LCDQp9C10LvRj9Cx0LjQvdGB0LosINCn0LXQu9GP0LHQuNC90YHQutCw0Y8g0L7QsdC7LiwgNDU0MDg3!5e0!3m2!1sru!2sru!4v1632689338577!5m2!1sru!2sru" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+			<p>Адрес<br>Челябинск, ул.Марата, д.8</p>
+			<p>Телефон<br>+79080636899</p>
+			<p>Email<br>mdryomin@bk.ru</p>
+			<p>Режим работы<br>с 11:00 до 21:00</p>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="footer_contacts">
+			<div class="contacts">Контакты
+				<div class="telephone">
+			<img class="print_telephone" src="{% static 'Site_icons/phone.png' %}" alt="">
+			<div class="number">+79080636899
+			</div>
+		</div>
+		<div class="location">
+			<img class="print_location" src="{% static 'Site_icons/location.png' %}" alt="">
+			<div class="address">Город Челябинск, улица Марата 8
+			</div>
+		</div>
+		<div class="email">
+			<img class="print_email" src="{% static 'Site_icons/envelope.png' %}" alt="">
+			<div class="email_address">mdryomin@bk.ru
+			</div>
+		</div>
+			</div>
+
+		</div>
+		<div class="social_sites">Мы в социальных сетях
+				<ul>
+					<li class="VK"><a href="https://vk.com/mdryomin99" target="_blank"><img src="{% static 'Site_icons/vk.png' %}" width="40"
+					height="40" alt=""></a>
+					<li class="Telegram"><a href="https://t.me/MikhailDrem" target="_blank"><img src="{% static 'Site_icons/telegram.png' %}" width="40"
+					height="40" alt=""></a>
+					<li class="Instagram"><a href="https://www.instagram.com/" target="_blank"><img src="{% static 'Site_icons/instagram.png' %}" width="40"
+					height="40" alt=""></a>
+				</ul>
+
+		</div>
+	</div>
+	<a href="#" class="scrollup">Наверх</a>
+</body>
+</html>

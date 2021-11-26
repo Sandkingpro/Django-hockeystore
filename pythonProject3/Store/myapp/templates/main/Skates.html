@@ -1,0 +1,193 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" >
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Коньки</title>
+	<script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+
+	$(window).scroll(function(){
+	if ($(this).scrollTop() > 300) {
+	$('.scrollup').fadeIn();
+	} else {
+	$('.scrollup').fadeOut();
+	}
+	});
+
+	$('.scrollup').click(function(){
+	$("html, body").animate({ scrollTop: 0 }, 600);
+	return false;
+	});
+
+	});
+</script>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	
+</head>
+<body>
+	<div class="header">
+		<div class="navbar">
+			<div class="logo">
+				<a  href="{% url 'home' %}">
+					<img src="{% static 'Site_icons/logo.png' %}" width="384" height="76" alt="">
+				</a>
+				 {% if is_login %}
+				<a class="auth" >
+				{{username}}
+				</a>
+				<a class="logout" href="{% url 'logout' %}">
+					<button>Выйти</button>
+				</a>
+				{% else %}
+				<a class="auth" href="{% url 'login' %}">
+				Авторизоваться
+				</a>
+				{% endif %}
+			</div>
+			<div class="search">
+				<input name="Search" type="text" placeholder="Поиск по товарам" />
+				<div><input class="icon_search" type="image" src="{% static 'Site_icons/search.png' %}" width="24" height="27" alt="Не удалось загрузить изображение"></div>
+			</div>
+			</div>
+		<div class="basket">
+			<a href="{% url 'basket' %}">
+				<img src="{% static 'Site_icons/shopping-cart.png' %}" width="50" height="45" alt="">
+			</a>
+		</div>
+		<ul class="navlist">
+			<li class="Catalog"><img src="{% static 'Site_icons/menu.png' %}" width="26" height="22" alt="">
+			<div class="dropdown-content">
+    			<a href="{% url 'catalog_crags' %}">Краги</a>
+    			<a href="{% url 'catalog' %}">Коньки</a>
+    			<a href="{% url 'catalog_bib' %}">Нагрудники</a>
+    			<a href="{% url 'catalog_trousers' %}">Трусы</a>
+    			<a href="{% url 'catalog_sticks' %}">Клюшки</a>
+    			<a href="{% url 'catalog_armrests' %}">Подлокотники</a>
+    			<a href="{% url 'catalog_helmets' %}">Шлемы</a>
+  			</div>
+			<li ><a href="#">Каталог
+  			</a>
+			<li><a href="{% url 'brends' %}">Производители</a>
+			<li><a href="{% url 'company' %}">О компании</a>
+			<li><a href="{% url 'contacts' %}">Контакты</a>
+		</ul>
+		<div class="line2"></div>
+		</div>
+	<div class="line1">
+</div>
+<div class="content">
+	<ol class="filter" >
+		<li><div class="price_filter">
+			<p>Цена</p>
+			<input class='price_btn' type="image" src="{% static 'Site_icons/down-arrow.png' %}" height="12" width="12" alt="Не удалось загрузить изображение">
+			<input type="image" class='close_arrow' src="{% static 'Site_icons/up-arrow.png' %}" height="12" width="12" alt="Не удалось загрузить изображение">
+			<div class="price_down">
+				<div class='start_price'>0</div>
+				<div class=line></div>
+				<div class='end_price'>100000</div>
+				<div class="container">
+  				<input class="range_min" type="range" min="0" step="1" max="100000" value="0">
+  				<input class="range_max" type="range" min="0" step="1" max="100000" value="100000">
+</div>
+			</div>
+		</div>
+		</li>
+		<li>
+			<div class="firm_filter">
+			<p>Производители</p>
+			<input class='firm_btn' type="image" src="{% static 'Site_icons/down-arrow.png' %}" height="12" width="12" alt="Не удалось загрузить изображение">
+			<input type="image" class='close_arrow_firm' src="{% static 'Site_icons/up-arrow.png' %}" height="12" width="12" alt="Не удалось загрузить изображение">
+			<div class="firm_down">
+			</div>
+		</div>
+		</li>
+	</ol>
+
+
+	<h1 class="title_catalog">{{title}}</h1>
+	<ul>
+
+		{% for post in pr %}
+		{% csrf_token %}
+		<li class="item_catalog"><div class="uniform">
+			<img class="item-img" src="{{post.image.url}}" width="192" height="157" alt="">
+			<p class="item-name">{{post.name}}<br> </p>
+			<h1 class="item-price">{{post.price}}</h1>
+			<h1 class="currency">руб.</h1>
+		</div>
+
+		<div class="box">
+			<div class="form_radio_btn">
+				<input id="radio-1{{post.image.url}}" type="radio" name="radio" value="1" >
+				<label for="radio-1{{post.image.url}}">S</label>
+			</div>
+			 
+			<div class="form_radio_btn">
+				<input id="radio-2{{post.image.url}}" type="radio" name="radio" value="2">
+				<label for="radio-2{{post.image.url}}">M</label>
+			</div>
+			 
+			<div class="form_radio_btn">
+				<input id="radio-3{{post.image.url}}" type="radio" name="radio" value="3">
+				<label for="radio-3{{post.image.url}}">L</label>
+			</div>
+			<div class="form_radio_btn">
+				<input id="radio-4{{post.image.url}}" type="radio" name="radio" value="4">
+				<label for="radio-4{{post.image.url}}">XL</label>
+			</div>
+			<ul>
+			<li><input class="remove" type="image" src="{% static 'Site_icons/remove.png' %}" width="15" height="15" alt="Не удалось загрузить изображение">
+			<li><div class="counter">1</div>
+			<li><input class="plus" type="image" src="{% static 'Site_icons/plus.png' %}" width="15" height="15" alt="Не удалось загрузить изображение">
+			</ul>
+			<button class="BasketAdd">В корзину</button>
+
+		</div>
+		{% endfor %}
+
+	</ul>
+</div>
+<div class="footer">
+		<div class="footer_contacts">
+			<div class="contacts">Контакты
+				<div class="telephone">
+			<img class="print_telephone" src="{% static 'Site_icons/phone.png' %}" alt="">
+			<div class="number">+79080636899
+			</div>
+		</div>
+		<div class="location">
+			<img class="print_location" src="{% static 'Site_icons/location.png' %}" alt="">
+			<div class="address">Город Челябинск, улица Марата 8
+			</div>
+		</div>
+		<div class="email">
+			<img class="print_email" src="{% static 'Site_icons/envelope.png' %}" alt="">
+			<div class="email_address">mdryomin@bk.ru
+			</div>
+		</div>
+			</div>
+
+		</div>
+		<div class="social_sites">Мы в социальных сетях
+				<ul>
+					<li class="VK"><a href="https://vk.com/mdryomin99" target="_blank"><img src="{% static 'Site_icons/vk.png' %}" width="40"
+					height="40" alt=""></a>
+					<li class="Telegram"><a href="https://t.me/MikhailDrem" target="_blank"><img src="{% static 'Site_icons/telegram.png' %}" width="40"
+					height="40" alt=""></a>
+					<li class="Instagram"><a href="https://www.instagram.com/" target="_blank"><img src="{% static 'Site_icons/instagram.png' %}" width="40"
+					height="40" alt=""></a>
+				</ul>
+
+		</div>
+	</div>
+	<a href="#" class="scrollup">Наверх</a>
+	<script src="{% static 'js/script.js' %}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	{% if flag %}  <script>alert("Предмет уже в корзине")</script> {% endif %}
+</body>
+</html>
